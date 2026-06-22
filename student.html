@@ -220,6 +220,8 @@
 
         /* ═══ FULL SCIENTIFIC CALCULATOR ═══ */
         #calc-btn{position:fixed;bottom:20px;right:20px;background:var(--primary);color:#000;border-radius:50%;font-size:20px;cursor:pointer;z-index:9000;width:54px;height:54px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(16,185,129,0.4);border:none;padding:0;}
+        #math-kbd-btn{position:fixed;bottom:20px;right:84px;background:#3b82f6;color:#fff;border-radius:50%;font-size:20px;cursor:pointer;z-index:9000;width:54px;height:54px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(59,130,246,0.4);border:none;padding:0;font-weight:bold;}
+
         #calculator{position:fixed;bottom:86px;right:20px;width:340px;background:#0a0a0a;border:1px solid #222;border-radius:18px;padding:14px;display:none;z-index:9000;box-shadow:0 20px 60px rgba(0,0,0,0.8);user-select:none;}
         .calc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
         .calc-title{font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:1px;}
@@ -439,6 +441,9 @@
 
 <!-- CALCULATOR -->
 <button id="calc-btn" class="no-print hidden" onclick="toggleCalc()" title="Scientific Calculator">🧮</button>
+<button id="math-kbd-btn" class="no-print hidden" onclick="toggleMathKbd()" title="Math & Science Symbols">Σ</button>
+
+<!-- ═══ SCIENTIFIC CALCULATOR ═══ -->
 <div id="calculator" class="no-print">
   <div class="calc-header">
     <span class="calc-title">🔬 Sci-Calc</span>
@@ -514,6 +519,46 @@
   <div class="calc-history-panel" id="calc-history-panel" style="display:none;">
     <div id="calc-history-list"></div>
   </div>
+</div>
+
+<!-- ═══ MATH/SCIENCE KEYBOARD ═══ -->
+<div id="math-kbd" class="no-print" style="display:none;position:fixed;bottom:84px;right:84px;width:340px;background:#09090b;border:1px solid #27272a;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:9001;flex-direction:column;overflow:hidden;">
+  <div style="background:#18181b;padding:10px 14px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #27272a;">
+    <span>Math & Science Symbols</span>
+    <span style="cursor:pointer;color:#a1a1aa;padding:0 5px;" onclick="toggleMathKbd()">✕</span>
+  </div>
+  <div style="padding:10px;display:grid;grid-template-columns:repeat(6, 1fr);gap:6px;">
+    <!-- Basic Math -->
+    <button class="calc-btn num" onclick="insertMathSymbol('±')">±</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('÷')">÷</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('×')">×</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('≠')">≠</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('≈')">≈</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('∞')">∞</button>
+    
+    <button class="calc-btn num" onclick="insertMathSymbol('≤')">≤</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('≥')">≥</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('√')">√</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('∛')">∛</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('π')">π</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('θ')">θ</button>
+    
+    <!-- Advanced/Calculus -->
+    <button class="calc-btn num" onclick="insertMathSymbol('∫')">∫</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('∑')">∑</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('Δ')">Δ</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('α')">α</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('β')">β</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('γ')">γ</button>
+
+    <button class="calc-btn num" onclick="insertMathSymbol('²')">x²</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('³')">x³</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('°')">°</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('µ')">µ</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('Ω')">Ω</button>
+    <button class="calc-btn num" onclick="insertMathSymbol('λ')">λ</button>
+  </div>
+  <div style="padding:0 10px 10px;font-size:11px;color:#a1a1aa;text-align:center;">Click a symbol to insert it into your active answer box.</div>
 </div>
 
 <!-- ═══ CONFIRM SUBMIT MODAL ═══ -->
@@ -806,7 +851,8 @@
         </div>
         <div id="integrity-summary"></div>
         <div class="action-row no-print">
-            <button class="export-btn" onclick="exportPDF()">📄 Export PDF</button>
+            <button class="export-btn" onclick="exportPDF()">📄 Export Result PDF</button>
+            <button class="export-btn" onclick="window.open('certificate.html?code=' + (document.getElementById('cert-code').innerText), '_blank')" style="background:rgba(59,130,246,0.15);color:var(--info);border:1px solid rgba(59,130,246,0.4);">🎓 Print Certificate</button>
             <button class="export-btn" onclick="shareResult()" style="background:rgba(16,185,129,0.15);color:var(--primary);border:1px solid rgba(16,185,129,0.4);">🔗 Share Result</button>
         </div>
     </div>
@@ -1313,6 +1359,7 @@ function _launchCountdown(){
             document.getElementById('countdown-overlay').classList.add('hidden');
             document.getElementById('exam-card').classList.remove('hidden');
             document.getElementById('calc-btn').classList.remove('hidden');
+            document.getElementById('math-kbd-btn').classList.remove('hidden');
             _beginExam();
         }
     },1000);
@@ -2215,6 +2262,7 @@ async function submitExam(){
     document.getElementById('exam-card').classList.add('hidden');
     document.getElementById('result-view').classList.remove('hidden');
     document.getElementById('calc-btn').classList.add('hidden');
+    document.getElementById('math-kbd-btn').classList.add('hidden');
     document.getElementById('calculator').style.display='none';
 
     // Grade ring
@@ -2751,6 +2799,38 @@ let _calcPowYPending=false;
 function toggleCalc(){
   const c=document.getElementById('calculator');
   c.style.display=c.style.display==='block'?'none':'block';
+}
+
+function toggleMathKbd(){
+    const kbd=document.getElementById('math-kbd');
+    kbd.style.display=kbd.style.display==='none'?'flex':'none';
+}
+
+function insertMathSymbol(sym){
+    if(sym==='²') sym='²';
+    else if(sym==='³') sym='³';
+    
+    // Find active input/textarea
+    const activeEl = document.activeElement;
+    if(activeEl && (activeEl.tagName==='INPUT' || activeEl.tagName==='TEXTAREA') && activeEl.type!=='radio' && activeEl.type!=='checkbox'){
+        const start = activeEl.selectionStart;
+        const end = activeEl.selectionEnd;
+        const text = activeEl.value;
+        activeEl.value = text.slice(0, start) + sym + text.slice(end);
+        activeEl.selectionStart = activeEl.selectionEnd = start + sym.length;
+        activeEl.dispatchEvent(new Event('input', { bubbles: true }));
+        activeEl.focus();
+    } else {
+        const q=questions[current];
+        if(q){
+            const input = document.getElementById('ans-short-'+q._orig) || document.getElementById('ans-essay-'+q._orig) || document.getElementById('ans-numeric-'+q._orig);
+            if(input){
+                input.value += sym;
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+                input.focus();
+            }
+        }
+    }
 }
 function setCalcMode(mode){
   _calcMode=mode;

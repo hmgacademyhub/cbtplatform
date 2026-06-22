@@ -440,7 +440,7 @@ tbody tr:hover td{background:var(--surface-hover);}
             <thead>
               <tr>
                 <th>Student</th><th>Class</th><th>Subject</th><th>Teacher</th>
-                <th>Score</th><th>%</th><th>Mode</th><th>Integrity</th><th>Time</th><th>Date</th>
+                <th>Score</th><th>%</th><th>Mode</th><th>Integrity</th><th>Time</th><th>Date</th><th>Actions</th>
               </tr>
             </thead>
             <tbody id="all-results-body"></tbody>
@@ -2036,8 +2036,21 @@ function renderAllResults(){
       <td>${iCell}</td>
       <td style="color:var(--text-muted);font-size:12px;">${formatTime(r.time_taken)}</td>
       <td style="color:var(--text-muted);font-size:12px;">${new Date(r.created_at).toLocaleDateString('en-GB')}</td>
+      <td>
+        <button class="btn-sm btn-danger" onclick="adminDeleteResult('${r.id}')" style="padding:5px 10px;font-size:11px;">Delete</button>
+      </td>
     </tr>`;
   }).join('');
+}
+
+async function adminDeleteResult(id){
+  if(!confirm(`⚠️ Delete this result permanently?`)) return;
+  try{
+    await sbFetch(`/rest/v1/results?id=eq.${id}`,'DELETE');
+    logActivity(`Admin deleted a student result`,'warning');
+    showToast('Result deleted.');
+    await loadPlatformData();
+  }catch(e){showToast('Error: '+e.message);}
 }
 
 function exportAllResults(){

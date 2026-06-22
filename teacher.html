@@ -1267,6 +1267,7 @@ code{background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px;font-
             <p style="font-size:13px;">Filter by any dimension then Generate Insights.</p>
           </div>
           <div class="flex-gap no-print">
+            <button class="btn-sm btn-danger" onclick="clearAllFilteredResults()" style="font-size:12px;">🗑 Delete All Listed</button>
             <button class="btn-sm btn-outline" onclick="exportResults()">⬇ Export CSV</button>
             <button class="btn-sm btn-outline" onclick="exportItemAnalysisCSV()">🧩 Item Analysis CSV</button>
             <button class="btn-sm btn-outline" onclick="loadResults().then(()=>showToast('✅ Results refreshed.'))" title="Reload latest results from database" style="font-size:12px;">🔄 Refresh</button>
@@ -4615,6 +4616,23 @@ function showRLSNotice(){
   <div style="color:#a1a1aa;margin-bottom:12px;">Go to <strong style="color:#f4f4f5;">Settings → Supabase Setup Guide</strong> and run the Step 1 SQL to enable deletes.</div>
   <button onclick="document.getElementById('rls-notice').remove();navigate('settings')" style="width:100%;padding:10px;background:#ef4444;color:white;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">Go to Settings</button>`;
   document.body.appendChild(div);
+}
+
+async function clearAllFilteredResults(){
+  const data = getFilteredResults();
+  if(!data.length) return showToast('No results to delete.');
+  if(!confirm(`⚠️ Are you sure you want to permanently delete ALL ${data.length} results currently shown in this list? This cannot be undone.`)) return;
+  
+  let deleted = 0;
+  showToast(`⏳ Deleting ${data.length} results... please wait.`);
+  for(const r of data){
+    try {
+      await sbFetch(`/rest/v1/results?id=eq.${r.id}`,'DELETE');
+      deleted++;
+    } catch(e) { console.warn('Failed to delete', r.id, e); }
+  }
+  await loadResults();
+  showToast(`✅ ${deleted} result(s) deleted successfully.`);
 }
 
 // ════════════════════════════════════════════

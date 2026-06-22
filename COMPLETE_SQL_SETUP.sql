@@ -55,6 +55,8 @@ CREATE TABLE IF NOT EXISTS public.exams (
   instructions    TEXT        NOT NULL DEFAULT '',
   is_archived     BOOLEAN     NOT NULL DEFAULT false,
   cert_code       TEXT        NOT NULL DEFAULT '',
+  proctoring      BOOLEAN     NOT NULL DEFAULT true,
+  math_keyboard   BOOLEAN     NOT NULL DEFAULT false,
   start_at        TIMESTAMPTZ,
   close_at        TIMESTAMPTZ,
   csv_data        JSONB       NOT NULL DEFAULT '[]'::jsonb,
@@ -107,6 +109,8 @@ ALTER TABLE public.exams ADD COLUMN IF NOT EXISTS release_results BOOLEAN     NO
 ALTER TABLE public.exams ADD COLUMN IF NOT EXISTS instructions    TEXT        NOT NULL DEFAULT '';
 ALTER TABLE public.exams ADD COLUMN IF NOT EXISTS is_archived     BOOLEAN     NOT NULL DEFAULT false;
 ALTER TABLE public.exams ADD COLUMN IF NOT EXISTS cert_code       TEXT        NOT NULL DEFAULT '';
+ALTER TABLE public.exams ADD COLUMN IF NOT EXISTS proctoring      BOOLEAN     NOT NULL DEFAULT true;
+ALTER TABLE public.exams ADD COLUMN IF NOT EXISTS math_keyboard   BOOLEAN     NOT NULL DEFAULT false;
 
 ALTER TABLE public.results ADD COLUMN IF NOT EXISTS student_id_ref  TEXT DEFAULT '';
 ALTER TABLE public.results ADD COLUMN IF NOT EXISTS student_type    TEXT DEFAULT 'open';
@@ -254,8 +258,8 @@ AS $$
     WHERE e.id = p_exam_id
       AND e.is_archived = false
       AND e.is_open = true
-      AND (e.start_at IS NULL OR e.start_at <= NOW())
-      AND (e.close_at IS NULL OR e.close_at > NOW())
+      AND (e.start_at IS NULL OR e.start_at <= NOW() + INTERVAL '1 hour')
+      AND (e.close_at IS NULL OR e.close_at + INTERVAL '12 hours' > NOW())
   );
 $$;
 
