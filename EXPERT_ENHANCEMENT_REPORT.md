@@ -214,3 +214,19 @@ The platform is appropriate for:
 - low-cost institutional CBT pilots.
 
 For high-stakes national/professional certification exams, pair it with human invigilation and additional operational controls.
+
+## 2026-06-23 expert enhancement summary
+
+Competitive platforms commonly advertise browser lockdown/proctoring, 15+ question types, exports, analytics, certificates, question banks, candidate management, and result audit trails. Comparable public feature references include ProProfs guidance on security controls, analytics and certificates; OnlineExamMaker's anti-cheating/candidate/certificate features; and ClassMarker's certificates, exports, access control, and proctoring.
+
+Implemented without paid APIs:
+
+1. Granular anti-cheat control per exam.
+2. Optional proctoring instead of forced camera workflow.
+3. Robust result-save RPC plus REST fallback to reduce “result not saved to dashboard” incidents.
+4. Real verifiable certificate workflow backed by Supabase result records.
+5. Expanded Math/Science on-screen keyboard with working symbol insertion.
+6. Updated SQL, validator, and documentation.
+
+Recommended post-deployment smoke test: create an exam with camera off, submit as a student, verify result appears on teacher dashboard, print/verify certificate, export CSV, delete one test result, then repeat with camera on.
+

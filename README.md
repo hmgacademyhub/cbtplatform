@@ -224,3 +224,8 @@ HMG Academy CBT Pro is part of the HMG Technologies mission under HMG Concepts: 
 ## 10. Complete file inventory
 
 A complete file-by-file inventory is available in `FILE_INVENTORY.md`.
+
+
+## 2026 Enterprise repair package
+
+This repository now includes granular anti-cheat selection, optional proctoring, robust RPC-based result saving, verifiable certificates, expanded working Math/Science keyboard, and updated SQL. Run `COMPLETE_SQL_SETUP.sql` in Supabase before deploying the updated static files to Vercel or Cloudflare Pages.

@@ -196,3 +196,11 @@ Please include:
 - browser/device;
 - screenshots or console errors if available;
 - whether real student data was involved.
+
+## 2026-06-23 security notes
+
+- Anonymous students should use RPC functions for public exam loading, attempt counting, certificate verification, and robust result submission. Do not create broad anonymous SELECT policies on `exams`, `students`, or `results`.
+- Result saving has a security-definer RPC (`submit_student_result`) that checks `is_exam_open_for_submission()` before insert. This reduces RLS-related submission failures while avoiding table-wide reads.
+- Camera and audio proctoring are optional per exam. They are evidence aids, not a replacement for school invigilation policy.
+- Certificate verification uses stored result records; a printed certificate is not trusted unless the code verifies online.
+

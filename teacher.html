@@ -816,6 +816,27 @@ code{background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px;font-
           </select>
         </div>
 
+
+
+        <hr class="divider">
+        <div class="form-section-title">Anti-Cheat Controls (choose only what you need)</div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:12px;">Select exactly which integrity tools should run for this exam. Turn off <strong>camera/proctoring</strong> for low-stakes tests or where students do not have webcams; keep tab-switch logging and randomisation for normal classroom security.</p>
+          <div class="grid-2" style="margin-bottom:0;">
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-tab" checked style="width:auto;margin-top:2px;"> Detect tab/app switching</label>
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-window" checked style="width:auto;margin-top:2px;"> Detect window blur/focus loss</label>
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-copy" checked style="width:auto;margin-top:2px;"> Block copy/cut/paste/select-all</label>
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-rightclick" checked style="width:auto;margin-top:2px;"> Block right-click/context menu</label>
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-fullscreen" checked style="width:auto;margin-top:2px;"> Require fullscreen mode</label>
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-devtools" checked style="width:auto;margin-top:2px;"> Detect developer tools / print / source shortcuts</label>
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-proctor" style="width:auto;margin-top:2px;"> Camera photo gate + periodic snapshots</label>
+            <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="ac-audio" style="width:auto;margin-top:2px;"> Browser audio spike monitoring</label>
+          </div>
+          <div class="grid-2" style="margin-top:12px;margin-bottom:0;">
+            <div><label>Violation Limit Before Auto-Submit</label><input type="number" id="ac-max" min="1" max="20" value="5" style="margin-bottom:0;"></div>
+            <div><label>On-screen Math/Science Keyboard</label><select id="ex-math-keyboard" style="margin-bottom:0;"><option value="true">Enable for typed answers</option><option value="false">Disable</option></select></div>
+          </div>
+        </div>
         <hr class="divider">
         <div class="form-section-title">Student Access</div>
         <p style="font-size:13px;margin-bottom:12px;">Choose who can sit this exam. Registered mode requires students to be in your class roster.</p>
@@ -2183,6 +2204,26 @@ SELECT 'Run COMPLETE_SQL_SETUP.sql for the canonical HMG Academy CBT v3.1 databa
         </div>
       </div>
 
+
+
+      <hr class="divider">
+      <div class="form-section-title">Anti-Cheat Controls</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
+        <div class="grid-2" style="margin-bottom:0;">
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-tab" style="width:auto;margin-top:2px;"> Detect tab/app switching</label>
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-window" style="width:auto;margin-top:2px;"> Detect window blur/focus loss</label>
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-copy" style="width:auto;margin-top:2px;"> Block copy/cut/paste/select-all</label>
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-rightclick" style="width:auto;margin-top:2px;"> Block right-click/context menu</label>
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-fullscreen" style="width:auto;margin-top:2px;"> Require fullscreen mode</label>
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-devtools" style="width:auto;margin-top:2px;"> Detect developer tools / print / source shortcuts</label>
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-proctor" style="width:auto;margin-top:2px;"> Camera proctoring</label>
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);"><input type="checkbox" id="edit-ac-audio" style="width:auto;margin-top:2px;"> Audio spike monitoring</label>
+        </div>
+        <div class="grid-2" style="margin-top:12px;margin-bottom:0;">
+          <div><label>Violation Limit Before Auto-Submit</label><input type="number" id="edit-ac-max" min="1" max="20" value="5" style="margin-bottom:0;"></div>
+          <div><label>On-screen Math/Science Keyboard</label><select id="edit-ex-math-keyboard" style="margin-bottom:0;"><option value="true">Enable</option><option value="false">Disable</option></select></div>
+        </div>
+      </div>
       <hr class="divider">
       <div class="form-section-title">Add Questions to This Exam</div>
       <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
@@ -2231,6 +2272,51 @@ let inactivityTimer=null;
 const INACTIVITY_LIMIT=8*60*60*1000;
 const SESSION_KEY='cbt_pro_session';
 let manualQCount=0; // counter for manual question entries
+
+
+
+async function saveExamPayloadWithFallback(payload, method='POST', examId=''){
+  const url=method==='PATCH'?`/rest/v1/exams?id=eq.${examId}`:'/rest/v1/exams';
+  try{return await sbFetch(url,method,payload);}catch(e){
+    const msg=String(e.message||'');
+    if(/anti_cheat_config|math_keyboard|proctoring|certificate_enabled|certificate_valid_days|column/i.test(msg)){
+      const lean={...payload};
+      delete lean.anti_cheat_config; delete lean.proctoring; delete lean.math_keyboard; delete lean.certificate_enabled; delete lean.certificate_valid_days;
+      const res=await sbFetch(url,method,lean);
+      showToast('⚠️ Saved without newest enterprise columns. Run COMPLETE_SQL_SETUP.sql to enable anti-cheat/certificate settings.');
+      return res;
+    }
+    throw e;
+  }
+}
+
+function getAntiCheatConfig(prefix='ac'){
+  const val=(id,def=false)=>{const el=document.getElementById((prefix==='ac'?'':'edit-')+id);return el?!!el.checked:def;};
+  const maxEl=document.getElementById(prefix==='ac'?'ac-max':'edit-ac-max');
+  return {
+    tab_switch: val('ac-tab',true), window_blur: val('ac-window',true), copy_paste: val('ac-copy',true),
+    right_click: val('ac-rightclick',true), fullscreen: val('ac-fullscreen',true), devtools: val('ac-devtools',true),
+    proctoring: val('ac-proctor',false), audio: val('ac-audio',false),
+    max_violations: Math.max(1, Math.min(20, Number(maxEl?.value||5)))
+  };
+}
+function normalizeAntiCheatConfig(exam){
+  let cfg=exam?.anti_cheat_config||null;
+  if(typeof cfg==='string'){try{cfg=JSON.parse(cfg);}catch(e){cfg=null;}}
+  cfg=cfg||{};
+  return {
+    tab_switch: cfg.tab_switch!==false, window_blur: cfg.window_blur!==false, copy_paste: cfg.copy_paste!==false,
+    right_click: cfg.right_click!==false, fullscreen: cfg.fullscreen!==false, devtools: cfg.devtools!==false,
+    proctoring: cfg.proctoring===true || exam?.proctoring===true,
+    audio: cfg.audio===true,
+    max_violations: Math.max(1, Math.min(20, Number(cfg.max_violations||5)))
+  };
+}
+function setAntiCheatForm(prefix, cfg){
+  const ids={tab_switch:'ac-tab',window_blur:'ac-window',copy_paste:'ac-copy',right_click:'ac-rightclick',fullscreen:'ac-fullscreen',devtools:'ac-devtools',proctoring:'ac-proctor',audio:'ac-audio'};
+  Object.entries(ids).forEach(([k,id])=>{const el=document.getElementById((prefix==='edit'?'edit-':'')+id);if(el)el.checked=!!cfg[k];});
+  const max=document.getElementById(prefix==='edit'?'edit-ac-max':'ac-max'); if(max)max.value=cfg.max_violations||5;
+}
 
 // ════════════════════════════════════════════
 // NAVIGATION — merged, handles all pages
@@ -3867,10 +3953,13 @@ async function createExam(){
     negative_mark: document.getElementById('ex-negative').value || 0,
     instructions:  document.getElementById('ex-instructions').value || '',
     release_results: document.getElementById('ex-release').value === 'true',
+    anti_cheat_config: getAntiCheatConfig('ac'),
+    proctoring: document.getElementById('ac-proctor')?.checked === true,
+    math_keyboard: document.getElementById('ex-math-keyboard')?.value !== 'false',
     close_at:      closeAtVal ? new Date(closeAtVal).toISOString() : null
   };
   try{
-    await sbFetch('/rest/v1/exams','POST',payload);
+    await saveExamPayloadWithFallback(payload,'POST');
     showToast('✅ Assessment published! Code: '+payload.code+' — link and code are available in Assessments.');
     ['ex-sub','ex-class','ex-topic','ex-session','ex-dur','ex-count','ex-start-at'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('ex-term').value='';document.getElementById('ex-type').value='';
@@ -3878,6 +3967,8 @@ async function createExam(){
     const _cm=document.getElementById('ex-mode');if(_cm)_cm.value='open';
     const _ca=document.getElementById('ex-close-at');if(_ca)_ca.value='';
     const _on=document.getElementById('ex-open-now');if(_on)_on.value='false';
+    setAntiCheatForm('', normalizeAntiCheatConfig({anti_cheat_config:{proctoring:false,audio:false,max_violations:5}}));
+    const _mk=document.getElementById('ex-math-keyboard');if(_mk)_mk.value='true';
     document.getElementById('csv-file').value='';document.getElementById('csv-preview').innerText='';
     questionsPool=[];
     await loadExams();
@@ -5103,10 +5194,10 @@ async function confirmDuplicate(){
     subject:encodeMeta('[COPY] '+m.subject,m.cls,m.term,m.topic,m.type,m.session,m.passmark),
     duration:exam.duration,attempt_limit:exam.attempt_limit,select_count:exam.select_count,
     code:newCode,csv_data:parseQuestionData(exam.csv_data),teacher_id:session.user.id,
-    exam_mode:exam.exam_mode,is_open:false,close_at:null
+    exam_mode:exam.exam_mode,is_open:false,close_at:null,anti_cheat_config:normalizeAntiCheatConfig(exam),proctoring:normalizeAntiCheatConfig(exam).proctoring,math_keyboard:exam.math_keyboard!==false
   };
   try{
-    await sbFetch('/rest/v1/exams','POST',payload);
+    await saveExamPayloadWithFallback(payload,'POST');
     document.getElementById('dup-modal').classList.add('hidden');
     _dupExamId=null;btn.disabled=false;btn.innerText='✓ Duplicate';
     await loadExams();
@@ -5143,6 +5234,9 @@ function openEditExamModal(id) {
   document.getElementById('edit-ex-passmark').value = m.passmark || 50;
   document.getElementById('edit-ex-open-now').value = exam.is_open ? 'true' : 'false';
   document.getElementById('edit-ex-mode').value = exam.exam_mode || 'open';
+  const acfg = normalizeAntiCheatConfig(exam);
+  setAntiCheatForm('edit', acfg);
+  const editMk=document.getElementById('edit-ex-math-keyboard'); if(editMk)editMk.value = exam.math_keyboard === false ? 'false' : 'true';
   
   // Set close-at if exists
   if (exam.close_at) {
@@ -5240,12 +5334,15 @@ async function saveExamEdits() {
       select_count: selectCount,
       is_open: isOpen,
       exam_mode: examMode,
+      anti_cheat_config: getAntiCheatConfig('edit'),
+      proctoring: document.getElementById('edit-ac-proctor')?.checked === true,
+      math_keyboard: document.getElementById('edit-ex-math-keyboard')?.value !== 'false',
       close_at: closeAt,
       updated_at: new Date().toISOString()
     };
     
     // Update the exam in Supabase
-    await sbFetch(`/rest/v1/exams?id=eq.${_editExamId}`, 'PATCH', updateData);
+    await saveExamPayloadWithFallback(updateData,'PATCH',_editExamId);
     
     // Update local data
     exam.subject = encodedMeta;
@@ -5254,6 +5351,9 @@ async function saveExamEdits() {
     exam.select_count = selectCount;
     exam.is_open = isOpen;
     exam.exam_mode = examMode;
+    exam.anti_cheat_config = updateData.anti_cheat_config;
+    exam.proctoring = updateData.proctoring;
+    exam.math_keyboard = updateData.math_keyboard;
     exam.close_at = closeAt;
     exam.updated_at = new Date().toISOString();
     

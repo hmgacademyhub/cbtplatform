@@ -263,3 +263,21 @@ Brand details:
 - Phone: +234 907 790 7677
 - Email: hismarvellousgrace@gmail.com
 - Tech/partnerships: buildingmyictcareer@gmail.com
+
+## Enterprise features added/confirmed
+
+### Granular anti-cheat controls
+Teachers can choose only the controls needed per exam: tab/app switch detection, window blur detection, copy/cut/paste/select-all blocking, right-click blocking, fullscreen enforcement, devtools/print/source shortcut detection, camera photo gate with periodic snapshots, audio spike monitoring, and the number of violations before auto-submit.
+
+### Result operations
+Teachers can export CSV, export item analysis, view detailed answer/proctor evidence, delete individual results, bulk-select results, and delete all currently filtered/listed results. Admin can view/export/delete platform-wide result records.
+
+### Verifiable certificates
+Students receive a certificate/submission code after submission. `certificate.html` verifies the code against Supabase through `verify_certificate()` and displays the authentic score, subject, date, issuer, and validity status.
+
+### Math/Science on-screen keyboard
+The student portal includes an on-screen keyboard for symbols not available on normal keyboards, including Greek letters, inequalities, roots, calculus signs, set/logic signs, superscripts/subscripts, chemistry formula fragments, and science units.
+
+### Question types
+The system supports MCQ, MRQ, True/False, Short Answer, Numeric, Matching, Ordering, Cloze/Multi-blank, Essay/Keyword, Categorization, and Multi-part Numeric. Assertion-reason, case-study, image-based, and practical/science questions can be implemented using these supported types without paid APIs.
+

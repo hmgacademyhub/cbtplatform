@@ -117,3 +117,16 @@ A completed enhancement should include:
 - Admin sees platform data.
 - Documentation is updated.
 - Ready-to-upload folder and zip are produced.
+
+## Current enterprise expectations added 2026-06-23
+
+When maintaining the platform, confirm these features remain working:
+
+- Per-exam granular anti-cheat controls are available in create/edit exam screens.
+- Camera proctoring is optional and must not run when the teacher disables it.
+- Math/Science keyboard inserts symbols into short, numeric, cloze, essay, and multi-part numeric answer fields.
+- Student result submission tries `submit_student_result(jsonb)` first, then safe REST fallbacks, and tells the student to download backup only if all saves fail.
+- `certificate.html` verifies certificates through `verify_certificate(text)`.
+- SQL adds `anti_cheat_config`, certificate validity columns, `submit_student_result`, and `verify_certificate` idempotently.
+- Documentation, deployment validator, feature guide, README, CHANGELOG, and expert report must be updated after any behaviour change.
+

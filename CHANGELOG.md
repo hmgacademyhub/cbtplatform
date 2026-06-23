@@ -82,3 +82,14 @@
 - Student countdown timer.
 - Basic results and exports.
 - Supabase backend integration.
+
+## 2026-06-23 — Enterprise audit repair package
+
+- Added granular per-exam anti-cheat selection: tab/app switch, blur, copy/paste, right-click, fullscreen, devtools, camera proctoring, audio monitoring, and violation limit.
+- Changed camera proctoring from forced/default to teacher-controlled.
+- Fixed the on-screen Math/Science keyboard insertion bug by tracking the last active answer field and preventing keyboard buttons from stealing focus. Added many extra mathematics, chemistry, physics, Greek, superscript, subscript, set, logic, and unit symbols.
+- Added robust `submit_student_result(jsonb)` Supabase RPC with REST fallback so student submissions are saved even when direct anonymous insert/RLS behaviour differs.
+- Added `verify_certificate(text)` RPC and certificate validity support. Certificate page now verifies from the result record and detects disabled/expired certificates.
+- Added database fields for `anti_cheat_config`, `certificate_enabled`, and `certificate_valid_days`.
+- Updated deployment validation and documentation to reflect current enterprise features.
+

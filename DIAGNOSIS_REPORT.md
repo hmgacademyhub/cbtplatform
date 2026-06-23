@@ -178,3 +178,15 @@ The v3.1 platform addresses many of these with free tools. Paid-only items such 
 The platform is now stronger, safer, and more deployment-ready. The largest improvement is the corrected Supabase security architecture: **students use safe RPCs, teachers use RLS-isolated data, and admins use server-verified RPCs.**
 
 Recommended next step before production: deploy the `CBT` folder, run `COMPLETE_SQL_SETUP.sql`, and test one full teacher → student → result → admin flow.
+
+## 2026-06-23 expert diagnosis
+
+Likely cause of the student submission error: direct anonymous insert into `results` can fail when the deployed Supabase schema/RLS is not fully up to date or when newer frontend payload columns do not exist. The platform already had REST fallbacks, but no dedicated submission RPC. This package adds `submit_student_result(jsonb)` and keeps direct fallbacks, making saving more reliable and easier to diagnose.
+
+Other findings fixed:
+
+- Camera proctoring was effectively always launched. It is now teacher-selectable.
+- Math keyboard buttons could steal focus, so symbols did not enter the answer field. Fixed with last-answer-field tracking and mousedown focus preservation.
+- Certificate verification page called `verify_certificate`, but SQL did not define it. Added the RPC and validity handling.
+- Student public exam RPC did not return anti-cheat/certificate settings. Added returned fields.
+

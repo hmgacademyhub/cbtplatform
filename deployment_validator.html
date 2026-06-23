@@ -66,8 +66,8 @@ async function runChecks(){
  results.push(row(hasSB?'ok':'bad','Supabase config',hasSB?'SB_URL and SB_KEY are present in teacher/student portals.':'Supabase variables are missing.'));
  results.push(row(!teacher.includes('service_role')&&!student.includes('service_role')&&!admin.includes('service_role')?'ok':'bad','No service_role key','No frontend file appears to contain a Supabase service_role key.'));
  results.push(row(sql.includes('is_platform_admin')&&sql.includes('get_public_exam_by_code')&&sql.includes('get_exam_attempt_count')?'ok':'bad','Correct v3.1 SQL/RPC setup',sql?'SQL contains admin guard, public exam RPC, and attempt-count RPC.':'COMPLETE_SQL_SETUP.sql missing.'));
- results.push(row(teacher.includes('admin_get_all_profiles')&&admin.includes('admin_get_all_results')?'ok':'warn','Admin SQL/RPC support','Admin panel and teacher SQL guide include admin RPC references.'));
- results.push(row(student.includes('get_public_exam_by_code')&&student.includes('get_exam_attempt_count')?'ok':'bad','Student secure access RPCs','Student portal uses secure RPCs instead of broad anonymous table reads.')); 
+ results.push(row(teacher.includes('admin_get_all_profiles')&&admin.includes('admin_get_all_results')&&sql.includes('verify_certificate')?'ok':'warn','Admin SQL/RPC support','Admin panel and teacher SQL guide include admin RPC references.'));
+ results.push(row(student.includes('get_public_exam_by_code')&&student.includes('get_exam_attempt_count')&&student.includes('submit_student_result')?'ok':'bad','Student secure access RPCs','Student portal uses secure RPCs for exam loading, attempt counting, and robust result submission.')); 
  results.push(row(student.includes('downloadResultBackup')&&teacher.includes('importStudentResultBackup')?'ok':'warn','Offline result recovery','Student backup download and teacher backup import are present.'));
  results.push(row(student.includes('face-api.js')&&student.includes('Web Audio API')?'ok':'warn','Free proctoring tools','Browser/cdn-based face/audio proctoring code detected; no paid AI API required.'));
  const missing=REQUIRED.filter(async()=>false);

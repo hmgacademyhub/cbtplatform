@@ -48,7 +48,7 @@ button:hover{opacity:0.9;}
   <div id="verify-form">
     <input type="text" id="cert-code-input" placeholder="Enter certificate code (e.g., CERT-A1B2C3D4)" onkeydown="if(event.key==='Enter') verifyCertificate()">
     <button onclick="verifyCertificate()">🔍 Verify Certificate</button>
-    <p style="font-size:12px;margin-top:12px;">Certificate code is printed on the student's result certificate.</p>
+    <p style="font-size:12px;margin-top:12px;">Certificate code is printed on the student's result certificate. Verification is done against the Supabase result record, so altered/forged certificates will not verify.</p>
   </div>
 
   <div id="loading" class="hidden">
@@ -100,6 +100,11 @@ async function verifyCertificate() {
     document.getElementById('loading').classList.add('hidden');
     if (data && data.length > 0) {
       const cert = data[0];
+      if(cert.is_valid === false){
+        document.getElementById('result-invalid').classList.remove('hidden');
+        document.getElementById('result-invalid').querySelector('p').innerText = 'This certificate code exists, but the certificate is disabled or expired. Contact the issuing teacher/school.';
+        return;
+      }
       document.getElementById('vc-code').innerText = code.toUpperCase();
       document.getElementById('vc-student').innerText = cert.student_name;
       document.getElementById('vc-subject').innerText = cert.subject;

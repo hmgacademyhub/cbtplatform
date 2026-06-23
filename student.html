@@ -527,36 +527,90 @@
     <span>Math & Science Symbols</span>
     <span style="cursor:pointer;color:#a1a1aa;padding:0 5px;" onclick="toggleMathKbd()">✕</span>
   </div>
-  <div style="padding:10px;display:grid;grid-template-columns:repeat(6, 1fr);gap:6px;">
-    <!-- Basic Math -->
-    <button class="calc-btn num" onclick="insertMathSymbol('±')">±</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('÷')">÷</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('×')">×</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('≠')">≠</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('≈')">≈</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('∞')">∞</button>
-    
-    <button class="calc-btn num" onclick="insertMathSymbol('≤')">≤</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('≥')">≥</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('√')">√</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('∛')">∛</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('π')">π</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('θ')">θ</button>
-    
-    <!-- Advanced/Calculus -->
-    <button class="calc-btn num" onclick="insertMathSymbol('∫')">∫</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('∑')">∑</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('Δ')">Δ</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('α')">α</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('β')">β</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('γ')">γ</button>
-
-    <button class="calc-btn num" onclick="insertMathSymbol('²')">x²</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('³')">x³</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('°')">°</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('µ')">µ</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('Ω')">Ω</button>
-    <button class="calc-btn num" onclick="insertMathSymbol('λ')">λ</button>
+  <div style="padding:10px;display:grid;grid-template-columns:repeat(8, 1fr);gap:6px;max-height:260px;overflow:auto;">
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('±')">±</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∓')">∓</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('×')">×</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('÷')">÷</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('·')">·</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('≈')">≈</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('≠')">≠</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('≡')">≡</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('≤')">≤</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('≥')">≥</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('&lt;')">&lt;</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('&gt;')">&gt;</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∞')">∞</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('√')">√</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∛')">∛</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∜')">∜</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('π')">π</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('θ')">θ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('α')">α</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('β')">β</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('γ')">γ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('δ')">δ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('λ')">λ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('μ')">μ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('Ω')">Ω</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('ω')">ω</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('Δ')">Δ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∇')">∇</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∂')">∂</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∫')">∫</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∑')">∑</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∏')">∏</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∈')">∈</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∉')">∉</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∪')">∪</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∩')">∩</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('⊂')">⊂</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('⊆')">⊆</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∀')">∀</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∃')">∃</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('⇒')">⇒</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('⇔')">⇔</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('→')">→</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('←')">←</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('↔')">↔</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('°')">°</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('′')">′</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('″')">″</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('²')">²</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('³')">³</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('⁴')">⁴</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₀')">₀</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₁')">₁</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₂')">₂</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₃')">₃</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₄')">₄</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₅')">₅</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₆')">₆</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₇')">₇</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₈')">₈</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₉')">₉</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('¹')">¹</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('½')">½</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('¼')">¼</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('¾')">¾</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('⁄')">⁄</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('ₙ')">ₙ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('ₓ')">ₓ</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₊')">₊</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('₋')">₋</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('H₂O')">H₂O</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('CO₂')">CO₂</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('O₂')">O₂</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('Na⁺')">Na⁺</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('Cl⁻')">Cl⁻</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('e⁻')">e⁻</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('pH')">pH</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('∆H')">∆H</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('M')">M</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('mol')">mol</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('kg')">kg</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('m²')">m²</button>
+    <button class="calc-btn num math-symbol-key" onmousedown="event.preventDefault()" onclick="insertMathSymbol('m³')">m³</button>
   </div>
   <div style="padding:0 10px 10px;font-size:11px;color:#a1a1aa;text-align:center;">Click a symbol to insert it into your active answer box.</div>
 </div>
@@ -881,9 +935,11 @@ let finalStudentClass='';      // resolved class going into submit
 let finalStudentId='';         // school student ID (empty for open mode)
 
 // ═══ ANTI-CHEAT STATE ═══
-const MAX_VIOLATIONS=3;
+let MAX_VIOLATIONS=5;
+let antiCheatConfig={tab_switch:true,window_blur:true,copy_paste:true,right_click:true,fullscreen:true,devtools:true,proctoring:false,audio:false,max_violations:5};
 let violationCount=0, violationLog=[], violationPending=false;
 let isFullscreen=false, blurCount=0;
+let _lastAnswerInput=null;
 
 const V={
     TAB_SWITCH:'Tab / App Switch',WINDOW_BLUR:'Window Lost Focus',
@@ -918,6 +974,38 @@ function parseQuestionData(raw){
         return [];
     }
 }
+
+
+function normalizeAntiCheatConfig(examObj){
+    let cfg=examObj?.anti_cheat_config||null;
+    if(typeof cfg==='string'){try{cfg=JSON.parse(cfg);}catch(e){cfg=null;}}
+    cfg=cfg||{};
+    return {
+        tab_switch: cfg.tab_switch!==false,
+        window_blur: cfg.window_blur!==false,
+        copy_paste: cfg.copy_paste!==false,
+        right_click: cfg.right_click!==false,
+        fullscreen: cfg.fullscreen!==false,
+        devtools: cfg.devtools!==false,
+        proctoring: cfg.proctoring===true || examObj?.proctoring===true,
+        audio: cfg.audio===true,
+        max_violations: Math.max(1,Math.min(20,Number(cfg.max_violations||5)))
+    };
+}
+function applyExamIntegritySettings(){
+    antiCheatConfig=normalizeAntiCheatConfig(exam);
+    MAX_VIOLATIONS=antiCheatConfig.max_violations;
+    const kbtn=document.getElementById('math-kbd-btn');
+    if(kbtn)kbtn.classList.toggle('hidden', exam?.math_keyboard===false || !examActive);
+}
+function isAntiCheatEnabled(name){return antiCheatConfig && antiCheatConfig[name]!==false;}
+
+document.addEventListener('focusin',e=>{
+    const el=e.target;
+    if(el && (el.matches?.('input.short-answer-input,input.cloze-input,input.multi-num-input,input.numeric-input,textarea.essay-textarea') || (el.tagName==='TEXTAREA') || (el.tagName==='INPUT' && !['button','radio','checkbox','submit'].includes(el.type)))){
+        _lastAnswerInput=el;
+    }
+});
 
 async function sbRpc(name, body){
     const res=await fetch(`${SB_URL}/rest/v1/rpc/${name}`,{
@@ -1123,6 +1211,7 @@ async function init(){
         const data=await fetchPublicExamByCode(code);
         if(!data.length){showStatusMsg('Exam not found or not open. Check your exam code or ask your teacher to resend/re-open the link/code. <button onclick="showCodeEntry()" style="width:auto;margin-left:8px;padding:6px 10px;background:var(--surface-2);color:var(--text);border:1px solid var(--border);border-radius:8px;">Try another code</button>');return;}
         exam=data[0];
+        applyExamIntegritySettings();
         if(!exam.is_open){showStatusMsg('This exam is currently closed. Contact your teacher.');return;}
         if(exam.close_at && new Date(exam.close_at).getTime() <= Date.now()){
             showStatusMsg('This exam has reached its scheduled closing time. HMG Academy CBT is a product of HMG Concepts. Contact your teacher if you believe this is an error.');
@@ -1199,7 +1288,7 @@ function startWaitRoom(){
             document.getElementById('wait-room-overlay').classList.add('hidden');
             // Re-fetch so questions hidden before the start time are now delivered.
             fetchPublicExamByCode(exam.code).then(data=>{
-                if(data&&data.length)exam=data[0];
+                if(data&&data.length){exam=data[0];applyExamIntegritySettings();}
                 init_admission();
             }).catch(()=>init_admission());
         }else{
@@ -1338,8 +1427,9 @@ async function validateAndStart(mode){
 // START EXAM — face gate → countdown → begin
 // ═══════════════════════════════════════════
 function startExam(){
-    // Launch face capture gate first; it calls _launchCountdown() when done
-    launchFaceGate();
+    // Launch face capture gate only if teacher enabled camera proctoring.
+    if(isAntiCheatEnabled('proctoring')) launchFaceGate();
+    else _launchCountdown();
 }
 
 function _launchCountdown(){
@@ -1359,7 +1449,7 @@ function _launchCountdown(){
             document.getElementById('countdown-overlay').classList.add('hidden');
             document.getElementById('exam-card').classList.remove('hidden');
             document.getElementById('calc-btn').classList.remove('hidden');
-            document.getElementById('math-kbd-btn').classList.remove('hidden');
+            applyExamIntegritySettings();
             _beginExam();
         }
     },1000);
@@ -1393,24 +1483,29 @@ function _beginExam(){
         if(timeLeft<=0)submitExam();
     },1000);
 
-    document.addEventListener('visibilitychange',handleVisibilityChange);
-    window.addEventListener('blur',handleWindowBlur);
+    if(isAntiCheatEnabled('tab_switch'))document.addEventListener('visibilitychange',handleVisibilityChange);
+    if(isAntiCheatEnabled('window_blur'))window.addEventListener('blur',handleWindowBlur);
     document.addEventListener('keydown',handleKeydown,true);
-    document.addEventListener('contextmenu',handleRightClick,true);
-    document.addEventListener('copy',handleCopy,true);
-    document.addEventListener('cut',handleCut,true);
-    document.addEventListener('paste',handlePaste,true);
-    document.addEventListener('selectstart',handleSelectStart,true);
-    requestFullscreen();
-    document.addEventListener('fullscreenchange',handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange',handleFullscreenChange);
-    document.addEventListener('mozfullscreenchange',handleFullscreenChange);
+    if(isAntiCheatEnabled('right_click'))document.addEventListener('contextmenu',handleRightClick,true);
+    if(isAntiCheatEnabled('copy_paste')){
+        document.addEventListener('copy',handleCopy,true);
+        document.addEventListener('cut',handleCut,true);
+        document.addEventListener('paste',handlePaste,true);
+        document.addEventListener('selectstart',handleSelectStart,true);
+    }
+    if(isAntiCheatEnabled('fullscreen')){
+        requestFullscreen();
+        document.addEventListener('fullscreenchange',handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange',handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange',handleFullscreenChange);
+    }
     window.onbeforeunload=()=>'You are in the middle of an exam. Leaving will not pause your timer.';
     const restoredDraft=loadDraft();
     if(restoredDraft){showToastStudent('✅ Saved answers restored from this device.');}
     startDraftSave();
-    startProctoring();     // ← live camera + periodic snapshots + multi-face detection
-    startDevToolsTrap();   // ← devtools size-change detection
+    if(isAntiCheatEnabled('proctoring'))startProctoring();     // live camera + periodic snapshots + multi-face detection
+    if(isAntiCheatEnabled('devtools'))startDevToolsTrap();      // devtools size-change detection
+    if(isAntiCheatEnabled('audio'))startAudioMonitor();         // optional audio spike monitor
     renderWatermark();renderQNav();showQ();
 }
 
@@ -1463,9 +1558,9 @@ function dismissViolation(){document.getElementById('violation-overlay').classLi
 // ═══════════════════════════════════════════
 // ANTI-CHEAT HANDLERS
 // ═══════════════════════════════════════════
-function handleVisibilityChange(){if(!examActive)return;if(document.hidden)recordViolation(V.TAB_SWITCH,'document.hidden=true');}
+function handleVisibilityChange(){if(!examActive||!isAntiCheatEnabled('tab_switch'))return;if(document.hidden)recordViolation(V.TAB_SWITCH,'document.hidden=true');}
 function handleWindowBlur(){
-    if(!examActive)return;blurCount++;
+    if(!examActive||!isAntiCheatEnabled('window_blur'))return;blurCount++;
     setTimeout(()=>{if(!examActive)return;if(document.getElementById('calculator').style.display==='block')return;if(blurCount%2===1)recordViolation(V.WINDOW_BLUR,`blur #${blurCount}`);},400);
 }
 function _isTypingTarget(t){
@@ -1477,21 +1572,21 @@ function handleKeydown(e){
     const typing=_isTypingTarget(e.target);
 
     // Always block browser/system shortcuts that can leak or disrupt the exam.
-    if(ctrl&&e.key.toLowerCase()==='p'){e.preventDefault();e.stopPropagation();recordViolation(V.PRINT_KEY);return;}
-    if(ctrl&&e.key.toLowerCase()==='u'){e.preventDefault();e.stopPropagation();recordViolation(V.VIEW_SOURCE);return;}
+    if(isAntiCheatEnabled('devtools')&&ctrl&&e.key.toLowerCase()==='p'){e.preventDefault();e.stopPropagation();recordViolation(V.PRINT_KEY);return;}
+    if(isAntiCheatEnabled('devtools')&&ctrl&&e.key.toLowerCase()==='u'){e.preventDefault();e.stopPropagation();recordViolation(V.VIEW_SOURCE);return;}
     if(ctrl&&e.key.toLowerCase()==='s'){e.preventDefault();e.stopPropagation();return;}
-    if(e.key==='F12'){e.preventDefault();e.stopPropagation();recordViolation(V.DEVTOOLS_KEY);return;}
+    if(isAntiCheatEnabled('devtools')&&e.key==='F12'){e.preventDefault();e.stopPropagation();recordViolation(V.DEVTOOLS_KEY);return;}
     if(e.key==='F5'||(ctrl&&e.key.toLowerCase()==='r')){e.preventDefault();e.stopPropagation();return;}
-    if(e.key==='PrintScreen'){e.preventDefault();e.stopPropagation();recordViolation(V.SCREENSHOT);return;}
+    if(isAntiCheatEnabled('devtools')&&e.key==='PrintScreen'){e.preventDefault();e.stopPropagation();recordViolation(V.SCREENSHOT);return;}
     if(['F1','F2','F3','F4','F6','F7','F8','F9','F10','F11'].includes(e.key)){e.preventDefault();e.stopPropagation();return;}
 
     // In typed-answer fields, allow normal typing/editing; paste is still blocked by the paste listener.
     if(typing)return;
 
-    if(ctrl&&e.key.toLowerCase()==='c'){e.preventDefault();e.stopPropagation();recordViolation(V.COPY_ATTEMPT);return;}
-    if(ctrl&&e.key.toLowerCase()==='x'){e.preventDefault();e.stopPropagation();recordViolation(V.CUT_ATTEMPT);return;}
-    if(ctrl&&e.key.toLowerCase()==='a'){e.preventDefault();e.stopPropagation();recordViolation(V.SELECT_ALL);return;}
-    if(ctrl&&e.key.toLowerCase()==='v'){e.preventDefault();e.stopPropagation();recordViolation(V.PASTE);return;}
+    if(isAntiCheatEnabled('copy_paste')&&ctrl&&e.key.toLowerCase()==='c'){e.preventDefault();e.stopPropagation();recordViolation(V.COPY_ATTEMPT);return;}
+    if(isAntiCheatEnabled('copy_paste')&&ctrl&&e.key.toLowerCase()==='x'){e.preventDefault();e.stopPropagation();recordViolation(V.CUT_ATTEMPT);return;}
+    if(isAntiCheatEnabled('copy_paste')&&ctrl&&e.key.toLowerCase()==='a'){e.preventDefault();e.stopPropagation();recordViolation(V.SELECT_ALL);return;}
+    if(isAntiCheatEnabled('copy_paste')&&ctrl&&e.key.toLowerCase()==='v'){e.preventDefault();e.stopPropagation();recordViolation(V.PASTE);return;}
 
     // JAMB-style keyboard shortcuts for faster CBT practice.
     const key=e.key.length===1?e.key.toUpperCase():e.key;
@@ -1514,11 +1609,11 @@ function handleKeydown(e){
     if(key==='R'){e.preventDefault();toggleFlag();return;}
     if(key==='S'){e.preventDefault();openSubmitModal();return;}
 }
-function handleRightClick(e){if(!examActive)return;e.preventDefault();e.stopPropagation();recordViolation(V.RIGHT_CLICK,`at (${e.clientX},${e.clientY})`);return false;}
-function handleCopy(e){if(!examActive)return;e.preventDefault();e.stopPropagation();if(violationLog[violationLog.length-1]?.event!==V.COPY_ATTEMPT)recordViolation(V.COPY_ATTEMPT,'copy event');}
-function handleCut(e){if(!examActive)return;e.preventDefault();e.stopPropagation();}
-function handlePaste(e){if(!examActive)return;e.preventDefault();e.stopPropagation();}
-function handleSelectStart(e){if(!examActive)return;const t=e.target;const isCalc=t.closest('#calculator')||t.id==='calc-display';const isInput=t.tagName==='INPUT'||t.tagName==='TEXTAREA';if(!isCalc&&!isInput)e.preventDefault();}
+function handleRightClick(e){if(!examActive||!isAntiCheatEnabled('right_click'))return;e.preventDefault();e.stopPropagation();recordViolation(V.RIGHT_CLICK,`at (${e.clientX},${e.clientY})`);return false;}
+function handleCopy(e){if(!examActive||!isAntiCheatEnabled('copy_paste'))return;e.preventDefault();e.stopPropagation();if(violationLog[violationLog.length-1]?.event!==V.COPY_ATTEMPT)recordViolation(V.COPY_ATTEMPT,'copy event');}
+function handleCut(e){if(!examActive||!isAntiCheatEnabled('copy_paste'))return;e.preventDefault();e.stopPropagation();}
+function handlePaste(e){if(!examActive||!isAntiCheatEnabled('copy_paste'))return;e.preventDefault();e.stopPropagation();}
+function handleSelectStart(e){if(!examActive||!isAntiCheatEnabled('copy_paste'))return;const t=e.target;const isCalc=t.closest('#calculator')||t.id==='calc-display';const isInput=t.tagName==='INPUT'||t.tagName==='TEXTAREA';if(!isCalc&&!isInput)e.preventDefault();}
 
 // ═══════════════════════════════════════════
 // FLAG / BOOKMARK
@@ -2079,6 +2174,7 @@ async function submitExam(){
     clearDraft();
     stopProctoring();
     stopDevToolsTrap();
+    stopAudioMonitor();
     window.onbeforeunload=null;
 
     // Remove all anti-cheat listeners
@@ -2597,6 +2693,11 @@ async function submitExam(){
     if(_saveIndicator) _saveIndicator.style.display='block';
 
     async function _attemptSave(body, label){
+        if(label==='rpc'){
+            await sbRpc('submit_student_result',{p_payload:body});
+            console.log('[CBT] Save attempt "rpc" succeeded.');
+            return true;
+        }
         const res = await fetch(`${SB_URL}/rest/v1/results`, {
             method: 'POST',
             headers: {
@@ -2648,7 +2749,6 @@ async function submitExam(){
 
     // Minimal body — only the columns guaranteed present from the base table
     const minimalBody = {
-        cert_code:      certCode,
         exam_id:      exam.id,
         student_name: finalStudentName,
         student_class:finalStudentClass,
@@ -2660,7 +2760,14 @@ async function submitExam(){
     let lastError = '';
 
     try{
-        await _attemptSave(fullBody, 'full');
+        await _attemptSave(fullBody, 'rpc');
+        saved = true;
+    }catch(rpcErr){
+        console.warn('[CBT] RPC save unavailable/failed; falling back to direct REST insert:', rpcErr.message);
+    }
+
+    try{
+        if(!saved){await _attemptSave(fullBody, 'full');}
         saved = true;
     }catch(e1){
         lastError = e1.message;
@@ -2807,29 +2914,30 @@ function toggleMathKbd(){
 }
 
 function insertMathSymbol(sym){
-    if(sym==='²') sym='²';
-    else if(sym==='³') sym='³';
-    
-    // Find active input/textarea
-    const activeEl = document.activeElement;
-    if(activeEl && (activeEl.tagName==='INPUT' || activeEl.tagName==='TEXTAREA') && activeEl.type!=='radio' && activeEl.type!=='checkbox'){
-        const start = activeEl.selectionStart;
-        const end = activeEl.selectionEnd;
-        const text = activeEl.value;
-        activeEl.value = text.slice(0, start) + sym + text.slice(end);
-        activeEl.selectionStart = activeEl.selectionEnd = start + sym.length;
-        activeEl.dispatchEvent(new Event('input', { bubbles: true }));
-        activeEl.focus();
-    } else {
+    if(sym==='&lt;')sym='<'; if(sym==='&gt;')sym='>';
+    // Use the last focused answer field because clicking the keyboard button moves focus.
+    let target=_lastAnswerInput;
+    const activeEl=document.activeElement;
+    if(activeEl && (activeEl.tagName==='INPUT' || activeEl.tagName==='TEXTAREA') && activeEl.type!=='radio' && activeEl.type!=='checkbox') target=activeEl;
+    if(!target || !document.body.contains(target)){
         const q=questions[current];
-        if(q){
-            const input = document.getElementById('ans-short-'+q._orig) || document.getElementById('ans-essay-'+q._orig) || document.getElementById('ans-numeric-'+q._orig);
-            if(input){
-                input.value += sym;
-                input.dispatchEvent(new Event('input', { bubbles: true }));
-                input.focus();
-            }
-        }
+        const orig=q?._orig;
+        target = document.getElementById('short-input-'+orig) || document.getElementById('num-input-'+orig) || document.getElementById('essay-'+orig) ||
+                 document.querySelector(`[id^="cloze-${orig}-"]`) || document.querySelector(`[id^="mn-${orig}-"]`);
+    }
+    if(target){
+        target.focus();
+        const start = (target.selectionStart!=null)?target.selectionStart:target.value.length;
+        const end = (target.selectionEnd!=null)?target.selectionEnd:start;
+        const text = target.value || '';
+        target.value = text.slice(0,start) + sym + text.slice(end);
+        const pos=start+sym.length;
+        try{target.selectionStart=target.selectionEnd=pos;}catch(e){}
+        target.dispatchEvent(new Event('input',{bubbles:true}));
+        _lastAnswerInput=target;
+        renderQNav();
+    }else{
+        showToastStudent('Tap inside a typed answer box first, then choose a symbol.');
     }
 }
 function setCalcMode(mode){
@@ -3319,7 +3427,8 @@ function _buildProctoringPayload(){
         intake_photos:_capturedPhotos.map((img,i)=>({i,img})),
         exam_snaps:_proctorSnapshots,
         face_api:_faceApiLoaded,
-        audio_monitored:!!_audioStream
+        audio_monitored:!!_audioStream,
+        config: antiCheatConfig
     };
 }
 
