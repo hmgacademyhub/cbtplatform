@@ -130,3 +130,84 @@ When maintaining the platform, confirm these features remain working:
 - SQL adds `anti_cheat_config`, certificate validity columns, `submit_student_result`, and `verify_certificate` idempotently.
 - Documentation, deployment validator, feature guide, README, CHANGELOG, and expert report must be updated after any behaviour change.
 
+
+---
+
+## CBT v2 question-type requirements
+
+The platform must preserve and support all existing question types plus the CBT v2 additions. Do not remove or downgrade any of them.
+
+### Supported question types
+
+```text
+mcq              — Multiple Choice, one correct option
+mrq              — Multiple Response, multiple correct options with partial/all-or-nothing scoring
+tf               — True/False
+short            — Short typed answer with alternate accepted answers
+numeric          — Numeric answer with optional tolerance/unit
+matching         — Left/right pair matching with optional distractors
+ordering         — Sequence/reorder items
+cloze            — Multi-blank/fill-in-the-gap
+essay            — Keyword/minimum-word rule-based essay scoring, no AI API
+categorization   — Classify items into categories
+multi_numeric    — Multi-part numeric answer with partial credit
+assertion_reason — Assertion–Reason logic question, usually A–E options
+case_study       — Passage/scenario-based question
+image_mcq        — Image/diagram-based MCQ
+matrix           — Grid/matrix rows with shared choices, e.g. True/False or Yes/No
+hot_text         — Student selects correct words/phrases from chunks
+code             — Code, SQL, pseudocode, or algorithm response scored by keywords/tests and teacher review
+```
+
+### Required handling for CBT v2 question types
+
+When editing or auditing the code, verify that:
+
+1. `student.html` can render each type listed above.
+2. `student.html` can score each type without AI APIs.
+3. `student.html` stores the student answer in `answers_data` with `qtype`, `answer`, `time_sec`, and any needed schema/metadata.
+4. `teacher.html` CSV and XLSX import can parse advanced types using the existing extended columns, especially `Type`, `Accept`, and `Items`.
+5. Manual question entry supports advanced types through the advanced JSON/schema field.
+6. Result review and teacher answer review do not crash on old or new question types.
+7. The Math/Science keyboard remains visible during every active exam, including older exams whose database rows do not have `math_keyboard` set.
+8. Advanced text/code/essay scoring remains transparent rule-based scoring and must not call paid AI APIs.
+
+### Advanced question JSON examples
+
+Use the `Items` column for structured data:
+
+```json
+{"passage":"A beaker of warm water was covered with a cold lid..."}
+```
+
+```json
+[{"statement":"Water boils at 100°C at sea level.","answer":"True"},{"statement":"CO₂ is oxygen gas.","answer":"False"}]
+```
+
+```json
+[{"text":"2","correct":true},{"text":"4","correct":false},{"text":"5","correct":true}]
+```
+
+```json
+{"language":"JavaScript","keywords":["function","return","Math.max"]}
+```
+
+### Acceptance criteria for question-type work
+
+A valid CBT v2 enhancement must pass these checks:
+
+- Create/import one exam containing at least one `assertion_reason`, `case_study`, `image_mcq`, `matrix`, `hot_text`, and `code` question.
+- Student can answer and submit without JavaScript errors.
+- Teacher can see the submitted results.
+- Result export still works.
+- No paid AI/API calls are introduced.
+- Legacy MCQ/short/numeric/matching/ordering/cloze/essay/categorization/multi_numeric questions still work.
+
+## CBT v2 maintenance checks
+
+- Confirm Math/Science keyboard is visible during all exams, including old exams without `math_keyboard` in their stored row.
+- Confirm question types include assertion_reason, case_study, image_mcq, matrix, hot_text, and code.
+- Confirm admin-supervised teacher control mode works and shows an ADMIN CONTROL MODE banner.
+- Confirm admin can open/lock exams and clear exam results.
+- Preserve no-AI/no-paid-API policy.
+

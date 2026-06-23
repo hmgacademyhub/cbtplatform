@@ -635,6 +635,7 @@ code{background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px;font-
     <div id="topbar">
       <button id="hamburger" onclick="toggleSidebar()">☰</button>
       <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div id="impersonation-banner" class="hidden" style="font-size:11px;font-weight:800;color:#f59e0b;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);border-radius:999px;padding:6px 10px;">ADMIN CONTROL MODE</div>
       <div class="topbar-actions no-print" style="position:relative;">
         <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle theme">🌙</button>
         <button class="notif-btn" onclick="toggleNotifPanel()" id="notif-btn" title="Notifications">
@@ -2271,6 +2272,8 @@ let lastResultCount=0;
 let inactivityTimer=null;
 const INACTIVITY_LIMIT=8*60*60*1000;
 const SESSION_KEY='cbt_pro_session';
+const IMPERSONATION_KEY='cbt_admin_impersonate_teacher';
+let adminImpersonation=null;
 let manualQCount=0; // counter for manual question entries
 
 
@@ -2948,6 +2951,11 @@ function initDashboard(email){
   document.getElementById('sidebar-name').innerText=name;
   document.getElementById('sidebar-avatar').innerText=name[0].toUpperCase();
   document.getElementById('settings-email').innerText=email;
+  const impBanner=document.getElementById('impersonation-banner');
+  if(impBanner&&adminImpersonation){
+    impBanner.classList.remove('hidden');
+    impBanner.innerHTML='👤 ADMIN CONTROL: '+(adminImpersonation.target_user?.email||email)+' <button onclick="exitAdminImpersonation()" style="margin-left:8px;background:transparent;border:1px solid rgba(245,158,11,.45);color:#f59e0b;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;cursor:pointer;">Exit Control</button>';
+  }
 
   // Show last login time
   const now=new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
@@ -3024,11 +3032,21 @@ async function tryRestoreSession(){
   }
 }
 
+
+function exitAdminImpersonation(){
+  localStorage.removeItem(IMPERSONATION_KEY);
+  adminImpersonation=null;
+  alert('Admin control mode ended. Return to the Admin Panel tab if needed.');
+  location.href='admin.html';
+}
+
 function logout(silent=false){
   if(!silent&&!confirm('Log out of HMG Academy CBT?'))return;
   clearTimeout(inactivityTimer);
   if(autoCloseInterval){clearInterval(autoCloseInterval);autoCloseInterval=null;}
   localStorage.removeItem(SESSION_KEY);
+  localStorage.removeItem(IMPERSONATION_KEY);
+  adminImpersonation=null;
   session=null;allResults=[];allExams=[];
   document.getElementById('app').classList.add('hidden');
   // Hide all status screens
@@ -3072,13 +3090,13 @@ function cleanAns(s,type){
   type=(type||'mcq').toLowerCase();
   if(type==='mrq'){
     // Comma-separated list of A/B/C/D
-    return (s||'').split(',').map(v=>v.trim().toUpperCase()).filter(v=>['A','B','C','D'].includes(v)).sort().join(',');
+    return (s||'').split(',').map(v=>v.trim().toUpperCase()).filter(v=>['A','B','C','D','E'].includes(v)).sort().join(',');
   }
   if(type==='short'||type==='numeric')return cleanField(s); // free text
   // Default: MCQ / TF
   if(s===undefined||s===null)return '';
-  s=cleanField(s).toUpperCase().replace(/[^A-D]/g,'');
-  return ['A','B','C','D'].includes(s)?s:'';
+  s=cleanField(s).toUpperCase().replace(/[^A-E]/g,'');
+  return ['A','B','C','D','E'].includes(s)?s:'';
 }
 
 // Split a single CSV line respecting quoted fields
@@ -3157,6 +3175,20 @@ function parseQuestionsCSV(text){
       results.push(applyQuestionMetadata(q,p));return;
     }
 
+
+
+    if(['assertion_reason','case_study','image_mcq','matrix','hot_text','code'].includes(type)){
+      const itemsRaw=cleanField(p[13]||'');
+      let items=[];
+      if(itemsRaw){try{items=JSON.parse(itemsRaw);}catch(e){console.warn(type+' parse error:',e);}}
+      const q={q:qText,type,a:cleanField(p[1]),b:cleanField(p[2]),c:cleanField(p[3]),d:cleanField(p[4]),ans:cleanAns(p[5],type),exp:cleanField(p[6])};
+      if(itemsRaw)q.items=items;
+      const accept=cleanField(p[10]); if(accept)q.accept=accept;
+      if(p[9]!==undefined){const u=cleanField(p[9]);if(u)q.unit=u;}
+      if(q.ans||type==='code'||type==='matrix'||type==='hot_text')results.push(applyQuestionMetadata(q,p));
+      return;
+    }
+
     // All other types (mcq, mrq, tf, short, numeric)
     const q={
       q:   qText,
@@ -3227,6 +3259,12 @@ function addManualQuestion(){
           <option value="numeric">&#35; Numeric Input</option>
           <option value="matching">⇌ Matching</option>
           <option value="ordering">⇅ Ordering / Sequencing</option>
+          <option value="assertion_reason">🧩 Assertion–Reason</option>
+          <option value="case_study">📚 Case Study / Passage</option>
+          <option value="image_mcq">🖼 Image-based MCQ</option>
+          <option value="matrix">▦ Matrix / Grid</option>
+          <option value="hot_text">🔎 Hot Text Selection</option>
+          <option value="code">💻 Code / Algorithm</option>
         </select>
       </div>
       <div id="mq-extra-${id}"></div>
@@ -3395,6 +3433,30 @@ function onManualTypeChange(id){
     extraArea.innerHTML='';
     // Seed two items
     addOrderItem(id);addOrderItem(id);
+
+
+  } else if(['assertion_reason','case_study','image_mcq','matrix','hot_text','code'].includes(type)){
+    optArea.innerHTML=`
+      <div style="font-size:12px;color:var(--info);margin-bottom:10px;padding:9px 13px;background:rgba(59,130,246,0.07);border-radius:8px;border:1px solid rgba(59,130,246,0.2);line-height:1.7;">
+        <strong>Advanced type:</strong> Use JSON schema for items. Examples: matrix rows <code>[{"statement":"...","answer":"True"}]</code>; hot text <code>[{"text":"...","correct":true}]</code>; case study <code>{"passage":"..."}</code>; code <code>{"language":"Python","keywords":["for","return"]}</code>.
+      </div>
+      <div class="grid-2">
+        <input type="text" id="mq-a-${id}" placeholder="Option A (for choice-based advanced types)">
+        <input type="text" id="mq-b-${id}" placeholder="Option B">
+        <input type="text" id="mq-c-${id}" placeholder="Option C">
+        <input type="text" id="mq-d-${id}" placeholder="Option D">
+      </div>
+      <div class="grid-2">
+        <select id="mq-ans-${id}" style="margin-bottom:8px;">
+          <option value="">— Correct Answer / Primary Key —</option>
+          <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option>
+        </select>
+        <input type="text" id="mq-accept-${id}" placeholder="Accept/options/image URL/keywords — use | to separate">
+      </div>
+      <textarea id="mq-items-json-${id}" rows="4" placeholder='Optional JSON items/schema for this question type' style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:monospace;font-size:12px;margin-bottom:8px;"></textarea>
+      <input type="text" id="mq-exp-${id}" placeholder="Explanation (optional)">`;
+    extraArea.innerHTML='';
+
   }
   compileManualQuestions();
 }
@@ -3557,6 +3619,22 @@ function compileManualQuestions(){
       const ans=JSON.stringify(items.map((_,i)=>i));
       questionsPool.push({q:qText,type:'ordering',items,exp,ans,a:'',b:'',c:'',d:''});
       valid++;
+
+
+    } else if(['assertion_reason','case_study','image_mcq','matrix','hot_text','code'].includes(type)){
+      const a=document.getElementById('mq-a-'+id)?.value.trim()||'';
+      const b=document.getElementById('mq-b-'+id)?.value.trim()||'';
+      const c=document.getElementById('mq-c-'+id)?.value.trim()||'';
+      const d=document.getElementById('mq-d-'+id)?.value.trim()||'';
+      const ans=document.getElementById('mq-ans-'+id)?.value||'';
+      const accept=document.getElementById('mq-accept-'+id)?.value.trim()||'';
+      const exp=document.getElementById('mq-exp-'+id)?.value.trim()||'';
+      const rawItems=document.getElementById('mq-items-json-'+id)?.value.trim()||'';
+      const q={q:qText,type,a,b,c,d,ans,exp};
+      if(accept)q.accept=accept;
+      if(rawItems){try{q.items=JSON.parse(rawItems);}catch(e){showToast('Invalid JSON in advanced manual question '+id);return;}}
+      if(ans||type==='code'||type==='matrix'||type==='hot_text'){questionsPool.push(q);valid++;}
+
     }
   });  // end ids.forEach
 
@@ -3649,6 +3727,19 @@ function parseXLSX(file,previewEl){
           if(type==='cloze' && (!Array.isArray(q.items)||!q.items.length) && q.ans)q.items=q.ans.split('|');
           if(type==='essay' && !q.items && accept)q.items={keywords:accept.split('|'),min_words:30};
           parsed.push(q);return;
+        }
+
+
+
+        if(['assertion_reason','case_study','image_mcq','matrix','hot_text','code'].includes(type)){
+          const itemsRaw=String(r[13]||'').trim(); let items=[];
+          if(itemsRaw){try{items=JSON.parse(itemsRaw);}catch(err){console.warn('XLSX '+type+' parse:',err);}}
+          const q={q:qText,type,a:cleanField(String(r[1]||'')),b:cleanField(String(r[2]||'')),c:cleanField(String(r[3]||'')),d:cleanField(String(r[4]||'')),ans:cleanAns(String(r[5]||''),type),exp:cleanField(String(r[6]||''))};
+          if(itemsRaw)q.items=items;
+          if(r[10]!==undefined&&r[10]!=='')q.accept=cleanField(String(r[10]));
+          if(r[9]!==undefined&&r[9]!=='')q.unit=cleanField(String(r[9]));
+          if(q.ans||type==='code'||type==='matrix'||type==='hot_text')parsed.push(q);
+          return;
         }
 
         const q={

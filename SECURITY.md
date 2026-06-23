@@ -203,4 +203,7 @@ Please include:
 - Result saving has a security-definer RPC (`submit_student_result`) that checks `is_exam_open_for_submission()` before insert. This reduces RLS-related submission failures while avoiding table-wide reads.
 - Camera and audio proctoring are optional per exam. They are evidence aids, not a replacement for school invigilation policy.
 - Certificate verification uses stored result records; a printed certificate is not trusted unless the code verifies online.
+## Admin-supervised teacher control mode
+
+CBT v2 adds an admin control mode for teacher dashboards. The admin does not receive the teacher password and does not become the teacher in Supabase Auth. The admin uses their own admin token and selected teacher ID as the operating context. A visible ADMIN CONTROL MODE banner is shown. This feature requires secure admin RLS policies and should be limited to trusted school owners/super-admins.
 

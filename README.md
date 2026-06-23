@@ -229,3 +229,7 @@ A complete file-by-file inventory is available in `FILE_INVENTORY.md`.
 ## 2026 Enterprise repair package
 
 This repository now includes granular anti-cheat selection, optional proctoring, robust RPC-based result saving, verifiable certificates, expanded working Math/Science keyboard, and updated SQL. Run `COMPLETE_SQL_SETUP.sql` in Supabase before deploying the updated static files to Vercel or Cloudflare Pages.
+## CBT v2 package
+
+CBT v2 adds more question types, always-on Math/Science keyboard availability during exams, and admin-supervised teacher dashboard control mode. See `ADVANCED_QUESTION_TYPES_GUIDE.md` and `CBT_V2_AUDIT_AND_DEPLOYMENT_STEPS.md`.
+

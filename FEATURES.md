@@ -280,4 +280,10 @@ The student portal includes an on-screen keyboard for symbols not available on n
 
 ### Question types
 The system supports MCQ, MRQ, True/False, Short Answer, Numeric, Matching, Ordering, Cloze/Multi-blank, Essay/Keyword, Categorization, and Multi-part Numeric. Assertion-reason, case-study, image-based, and practical/science questions can be implemented using these supported types without paid APIs.
+## CBT v2 additions
+
+- Additional question types: Assertion–Reason, Case Study, Image MCQ, Matrix/Grid, Hot Text, and Code/Algorithm responses.
+- Math/Science keyboard is now always available during exams so legacy exams also support symbol input.
+- Admin can open a teacher dashboard in admin-supervised control mode, without knowing or exposing teacher passwords.
+- Admin can open/lock exams and clear an exam’s result records from the platform-wide exam page.
 

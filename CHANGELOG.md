@@ -92,4 +92,11 @@
 - Added `verify_certificate(text)` RPC and certificate validity support. Certificate page now verifies from the result record and detects disabled/expired certificates.
 - Added database fields for `anti_cheat_config`, `certificate_enabled`, and `certificate_valid_days`.
 - Updated deployment validation and documentation to reflect current enterprise features.
+## CBT v2 — 2026-06-23
+
+- Added six more question types: assertion_reason, case_study, image_mcq, matrix, hot_text, and code.
+- Made Math/Science keyboard always visible during exams, including older exams created before the keyboard setting existed.
+- Added admin-supervised teacher impersonation/control mode.
+- Added Admin Panel controls to open/lock any exam and clear all results for a selected exam.
+- Added ADVANCED_QUESTION_TYPES_GUIDE.md and CBT_V2_AUDIT_AND_DEPLOYMENT_STEPS.md.
 
